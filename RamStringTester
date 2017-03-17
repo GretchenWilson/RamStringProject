@@ -1,0 +1,146 @@
+//********************************************************************************
+// Gretchen Wilson
+// CMSC 256 Fall 2016
+// RamStringTester.java
+//
+// RamStringTester tests the RamString class
+// RamString creates a string object that can be counted and manipulated.
+//********************************************************************************
+
+public class RamStringTester {
+
+	private static void printHeading() 
+	  { 
+	  String name = "\nGretchen Wilson";
+	  System.out.println(name);
+	  System.out.println("CSC 256 Fall 2016");
+	  System.out.println("Programming Project 2");
+	  System.out.println("RamStringTester.java and RamString.java/n"); 
+	  }
+	  
+	public static void main(String[] args) {
+		printHeading();
+		
+		RamString string1 = new RamString();
+		System.out.println("Testing RamString constructor. CurrentString should be initialized as null. Result: " + string1.getWackyString() );
+
+		RamString string2 = new RamString();
+		RamString string3 = new RamString();
+		RamString string4 = new RamString();
+		RamString string5 = new RamString();
+		RamString string6 = new RamString();
+		RamString string7 = new RamString();
+		RamString string8 = new RamString();
+		RamString string9 = new RamString();
+		
+		//testing for setWackyString()
+		System.out.println("\nTesting setWackyString() with various types of strings. There should be no return value."); 
+		System.out.println("\tNormal string with mix of numbers and charaters; Result: "); string4.setWackyString("G0r1e2t3c4h5e6n7");
+		System.out.println("\tString of all numbers; Result: "); string5.setWackyString("34567890");
+		System.out.println("\tString of all characters; Result: "); string6.setWackyString("hjbfkajnflkajflaks");
+		System.out.println("\tString of all special characters; Result: "); string7.setWackyString("!@#$%^&");
+		System.out.println("\tString of all characters; Result: "); string8.setWackyString("C000r0g0i00");
+		System.out.println("\tNull string; Result: "); string2.setWackyString(null);
+		System.out.println("\tEmpty string; Result: "); string3.setWackyString("");
+		
+		//testing for getEvenCharacters()
+		System.out.println("\nTesting getEvenCharacters() with various types of strings.");
+		System.out.println("\tNull string should return null; Result: " + string2.getEvenCharacters());
+		System.out.println("\tEmpty string should return an empty string; Result: " + string3.getEvenCharacters());
+		System.out.println("\t\"G0r1e2t3c4h5e6n7\" should return \"01234567\"; Result: " + string4.getEvenCharacters());
+		System.out.println("\tSpecial character string, \"!@#$%^&\" should return \"@$^\"; Result: " + string7.getEvenCharacters());
+		//reset string5 to new one character value
+		string5.setWackyString("T");
+		System.out.println("\tOne character string, \"T\" should return an empty string; Result: " + string5.getEvenCharacters());
+		//reset string6 to new two character value
+		string6.setWackyString("W3");
+		System.out.println("\tTwo character sting, \"W3\" should return \"3\"; Result: " + string6.getEvenCharacters());
+		
+		//testing for getOddCharacters()
+		System.out.println("\nTesting getOddCharacters() with various types of strings.");
+		System.out.println("\tNull string should return null; Result: " + string2.getOddCharacters());
+		System.out.println("\tEmpty string should return an empty string; Result: " + string3.getOddCharacters());
+		System.out.println("\t\"G0r1e2t3c4h5e6n7\" should return \"Gretchen\"; Result: " + string4.getOddCharacters());
+		System.out.println("\tSpecial character string, \"!@#$%^&\" should return \"!#%&\"; Result: " + string7.getOddCharacters());
+		System.out.println("\tOne character string, \"T\" should return \"T\"; Result: " + string5.getOddCharacters());
+		System.out.println("\tTwo character sting, \"W3\" should return \"W\"; Result: " + string6.getOddCharacters());
+		
+		//testing for countNonDigits()
+		System.out.println("\nTesting countNonDigits() with various types of strings.");
+		System.out.println("\tNull string should return 0; Result: " + string2.countNonDigits());
+		System.out.println("\tEmpty string should return 0; Result: " + string3.countNonDigits());
+		System.out.println("\t\"G0r1e2t3c4h5e6n7\" should return 8; Result: " + string4.countNonDigits());
+		System.out.println("\tSpecial character string, \"!@#$%^&\" should return 0; Result: " + string7.countNonDigits());
+		string5.setWackyString("p7847575");
+		System.out.println("\tString with non digit only in first position should return 1; Result: " + string5.countNonDigits());
+		string6.setWackyString("7847575c");
+		System.out.println("\tString with non digit only in last position should return 1; Result: " + string6.countNonDigits());
+		
+		//testing forramifyString()
+		System.out.println("\nTesting ramifyString() with various types of strings. \nChanges resulting from ramify will be visualized by calling getWackyString()");
+		System.out.println("\tCalling on null string should return null."); string2.ramifyString(); 
+		System.out.println("\t\tResult: " + string2.getWackyString());
+		System.out.println("\tCalling on an empty string should return an empty string."); string3.ramifyString(); 
+		System.out.println("\t\tResult: " + string3.getWackyString());
+		string5.setWackyString("Sheep0Sheep"); 
+		System.out.println("\tCalling on a string with one zero in the middle, \"Sheep0Sheep\", should return SheepRAMSheep."); string5.ramifyString();
+		System.out.println("\t\tResult: " + string5.getWackyString());
+		string5.setWackyString("0winston00"); 
+		System.out.println("\tCalling on a string with one zero at the beginning and two at the end, \"0winston00\", should return RAMwinstonVCU."); string5.ramifyString();
+		System.out.println("\t\tResult: " + string5.getWackyString());
+		string5.setWackyString("00winston0"); 
+		System.out.println("\tCalling on a string with two zeros at the beginning and one at the end, \"00winston0\", should return VCUwinstonRAM."); string5.ramifyString();
+		System.out.println("\t\tResult: " + string5.getWackyString());
+		string5.setWackyString("winston000"); 
+		System.out.println("\tCalling on a string with three zeros at the end, \"winston000\", should return winston000."); string5.ramifyString();
+		System.out.println("\t\tResult: " + string5.getWackyString());
+		string5.setWackyString("0$$##!!00"); 
+		System.out.println("\tCalling on a string of special characters with one zero at the beginning and two at the end, \"0$$##!!00\", should return RAM$$##!!VCU."); string5.ramifyString();
+		System.out.println("\t\tResult: " + string5.getWackyString());
+		
+		
+		//testing for convertDigitsToRomanNumeralsInSubstring() 
+		System.out.println("\nTesting convertDigitsToRomanNumeralsInSubstring() with various types of strings and parameters. \nChanges resulting from convert will be visualized by calling getWackyString()");
+		System.out.println("\tCalling on null string should return null."); string2.convertDigitsToRomanNumeralsInSubstring(1, 5);
+		System.out.println("\t\tResult: " + string2.getWackyString());
+		System.out.println("\tCalling on an empty string should return an empty string."); string3.convertDigitsToRomanNumeralsInSubstring(1, 5);; 
+		System.out.println("\t\tResult: " + string3.getWackyString()); 
+		try {
+		System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 0 as start position and 5 as end, should return MyIndexOutOfException."); string4.convertDigitsToRomanNumeralsInSubstring(0, 5);
+		System.out.println("\t\tResult: " + string4.getWackyString());
+		}
+		catch(MyIndexOutOfBoundsException M) {
+			System.out.println(M.getMessage());
+		}
+		try {
+			System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 1 as start position and 20 as end, should return MyIndexOutOfException."); string4.convertDigitsToRomanNumeralsInSubstring(5, 0);
+			System.out.println("\t\tResult: " + string4.getWackyString());
+			}
+			catch(MyIndexOutOfBoundsException M) {
+				System.out.println(M.getMessage());
+			}
+		try {
+			System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 4 as start position and 1 as end, should return IllegalArgumentException."); string4.convertDigitsToRomanNumeralsInSubstring(4, 1);
+			System.out.println("\t\tResult: " + string4.getWackyString());
+			}
+			catch(IllegalArgumentException E) {
+				System.out.println(E.getMessage());
+			}
+      
+		System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 5 as start position and 5 as end, should return string identical to start string."); string4.convertDigitsToRomanNumeralsInSubstring(5,5);
+		System.out.println("\t\tResult: " + string4.getWackyString());
+		string4.setWackyString("G0r1e2t3c4h5e6n7");
+		System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 6 as start position and 6 as end, should return string \"G0r1eIIt3c4h5e6n7\"."); string4.convertDigitsToRomanNumeralsInSubstring(6,6);
+		System.out.println("\t\tResult: " + string4.getWackyString());
+		string4.setWackyString("G0r1e2t3c4h5e6n7");
+		System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 3 as start position and 8 as end, should return string \"G0rIeIItIIIc4h5e6n7\"."); string4.convertDigitsToRomanNumeralsInSubstring(3,8);
+		System.out.println("\t\tResult: " + string4.getWackyString());
+		string4.setWackyString("G0r1e2t3c4h5e6n7");
+		System.out.println("\tCalling on string \"G0r1e2t3c4h5e6n7\" using 1 as start position and 16 as end, should return string \"G0rIeIItIIIcIVhVeVInVII\"."); string4.convertDigitsToRomanNumeralsInSubstring(1,16);
+		System.out.println("\t\tResult: " + string4.getWackyString());	
+		string4.setWackyString("012345678910");
+		System.out.println("\tCalling on string \"012345678910\" using 1 as start position and 12 as end, should return string \"0IIIIIIIVVVIVIIVIIIIX10\"."); string4.convertDigitsToRomanNumeralsInSubstring(1,12);
+		System.out.println("\t\tResult: " + string4.getWackyString());	
+	}
+
+}
